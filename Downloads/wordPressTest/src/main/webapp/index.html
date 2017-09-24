@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                text-align: center;
+            }
+            table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+        </style>
+    </head>
+    <body>
+        <div id="testHere"></div><br><br><br>
+        <div>
+        <form id="form">
+            <h5>name</h5>
+            <input type="text" id="name">
+            <h5>age</h5>
+            <input type="number" id="age">
+            <br><input type="submit">
+        </form>
+        </div>
+        <script>
+
+            document.getElementById("form").onsubmit = function () {
+                var info = {
+                    name: document.getElementById("name").value,
+                    age: document.getElementById("age").value
+                };
+                fetch("api/this/ins", {
+                    method: "post",
+                    body: JSON.stringify(info),
+                    headers: new Headers({'content-type': 'application/json'})
+                })
+                        .then(function (response) {
+                            
+                            return response.json;
+                    
+                        });
+                        alert("test person added!");
+            };
+
+
+            fetch("api/this/yo", {method: "get"})
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (json) {
+                        var str = "<table><tr><th>id</th><th>name</th><th>age</th></tr>";
+                        for (var i = 0; i < json.length; i++) {
+                            str +=
+                                    "<tr><td>" + json[i].id + "</td><td>" + json[i].name + "</td><td>" + json[i].age + "</td></tr>";
+                        } str += "</table>"
+                        document.getElementById("testHere").innerHTML = str;
+
+                    });
+        </script>
+    </body>
+</html>
