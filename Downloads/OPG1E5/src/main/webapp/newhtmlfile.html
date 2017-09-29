@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+
+med get udføres: ?hidden=12345678# i browser address field, hvilket måske ikke kan være godt,
+hvis dette tal er hemmeligt. Tallet der bliver sendt ses i headers form data hidden.
+
+med post blev tallene i det skjulte input fjernet fra browser address field foruden hashtagget.0
+dog sendes det stadig, man kan se form data hidden:12345678 i headers for html siden.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form action='#' method='get'>
+            First Name:<input type='text'><br>
+            Last Name:<input type='text'><br>
+            <input type='hidden' name='hidden' value=12345678>
+            <input type='submit'>
+        </form>
+    </body>
+</html>
